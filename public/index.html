@@ -13,16 +13,39 @@
         <span id="msgs"></span>
      
         <script type="text/javascript">
+            var Request = function()
+            {
+                this.getParameter = function( name )
+                {
+                    var rtnval = '';
+                    var nowAddress = unescape(location.href);
+                    var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+
+                    for(var i = 0 ; i < parameters.length ; i++)
+                    {
+                        var varName = parameters[i].split('=')[0];
+                        if(varName.toUpperCase() == name.toUpperCase())
+                        {
+                            rtnval = parameters[i].split('=')[1];
+                            break;
+                        }
+                    }
+                    return rtnval;
+                }
+            }
+            var request = new Request();
+
+            var uid = request.getParameter('uid') ;
             var socket = io.connect('http://localhost:8080');
             $("#msgbox").keyup(function(event) {
                 if (event.which == 13) {
-                    socket.emit('fromclient',{msg:$('#msgbox').val()});
+                    socket.emit('fromclient',{uid:uid,msg:$('#msgbox').val()});
                     $('#msgbox').val('');
                 }
             });
             socket.on('toclient',function(data){
                 console.log(data.msg);
-                $('#msgs').append(data.msg+'<BR>');
+                $('#msgs').append(data.uid + " : " +data.msg+'<BR>');
             });
         </script>
     </body>
