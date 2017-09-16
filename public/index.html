@@ -2,6 +2,8 @@
 <html lang="ko">
     <head>
         <title></title>
+        <meta http-ｅquiv="Content-Type" content="text/html;charset=UTF-8">
+
         <meta charset = "utf-8"/>
         <script src="/socket.io/socket.io.js"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -65,6 +67,7 @@
  <div class="row" style="padding-top: 60px;">
   
   <div class="span5" style="border-right: solid 1px black; padding-left: 20px;"> 
+
    <!-- added to the page -->
     <div id="canvasdiv">
     <!--  <canvas id="drawCanvas" width="480px" height="270px">
@@ -93,15 +96,119 @@
   <div id="blocklyDiv" style="height: 460px; width: 600px;"></div>
 
   <xml id="toolbox" style="display: none;">
-    <category name="Logic">
-      <block type="move">
-        <field name="moveLocation">좌표이동</field>
+    <category name="이동">
+      <block type="lightswitch">
+        <field name="lightcolor">red</field>
+        <field name="switch">on</field>
+      </block>
+
+      <block type="move_blk">
+        <field name="이동하기">앞으로</field>
+      </block>
+
+      <block type="move_mouse">
+          <field name="moveLocation">마우스커서로</field>
       </block>
     </category>
+
+    <category name="반복">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="controls_whileUntil"></block>
+
+      <block type="controls_for">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+
+    <category name="연산">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo"></block>
+      <block type="math_constrain">
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+    </category>
+
+
+    <category name="목록">
+      <block type="lists_create_empty"></block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf"></block>
+      <block type="lists_getIndex"></block>
+      <block type="lists_setIndex"></block>
+    </category>
+
+    <category name="변수" custom="VARIABLE"></category>
+
+    <category name="기능/함수" custom="PROCEDURE"></category>
+
   </xml>
    </div>
 
-  <script>
+
+<script>
   //put the toolbox in the workspace
   var workspace =Blockly.inject('blocklyDiv',
     {media: '../../media/',
