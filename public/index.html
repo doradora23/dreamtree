@@ -2,6 +2,8 @@
 <html lang="ko">
     <head>
         <title></title>
+        <meta http-ｅquiv="Content-Type" content="text/html;charset=UTF-8">
+
         <meta charset = "utf-8"/>
         <script src="/socket.io/socket.io.js"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -16,28 +18,13 @@
    <script src="script/en.js"></script>
 
    <script src="script/customblocks.js"></script>
-  <style>
-    body {
-      background-color: #fff;
-      font-family: sans-serif;
-    }
-    h1 {
-      font-weight: normal;
-      font-size: 140%;
-    }
-    #circle{
-      height: 300px;
-      width: 300px;
-      border-radius: 50%;
-      background-color:white;
-      border: solid 1px black;
-      position: absolute;
-      
-    }
-  </style>
+
+   <!--custom css -->
+   <link href="stylesheets/style.css" rel="stylesheet">
+  
 
     </head>
-    <body>
+    <body onload="startGame()">
        <!-- 상단 메뉴 바 -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -78,97 +65,163 @@
     </div>
  <!-- 구조 -->
  <div class="row" style="padding-top: 60px;">
-  <div class="span5" style="border-right: solid 1px black; padding-left: 20px;"> 
-   <!-- added to the page -->
-  <div id="circle"></div>
   
-  <b>Send message</b><p>
+  <div class="span5" style="border-right: solid 1px black; padding-left: 20px;"> 
+
+   <!-- added to the page -->
+    <div id="canvasdiv">
+    <!--  <canvas id="drawCanvas" width="480px" height="270px">
+        <img src="stylesheets/003-happy.png"/>
+
+      </canvas>
+    -->
+
+    </div>
+  
+    <div id="massageDiv">
+    <b>Send message</b><p>
         Message  <input type="text" id="msgbox"/>
         <br>
-        <span id="msgs"></span> </div>
+        <span id="msgs"></span>
 
+    </div>      
+  </div>
   <div class="span7">
    
    <!-- button to run code -->
   <p>
-    <button onclick="runCode()">Run JavaScript</button>
+    <button onclick="runCode()" class="btn btn-primary">Run JavaScript</button>
+    <button onclick="webReload()" class="btn btn-warning"> 새로고침 </button>
   </p>
-  <!-- TOOL BOX -->
-  <div id="blocklyDiv" onmouseup="onBlockMove()" style="height: 460px; width: 600px; overflow:auto;"></div>
   
+  <!-- TOOL BOX -->
+  <div id="blocklyDiv" style="height: 500px; width: 100%;"></div>
+
   <xml id="toolbox" style="display: none;">
-    <category name="Logic">
+    <category name="이동">
       <block type="lightswitch">
-        <field name="lightcolor">red</field>
+        <field name="lightcolor">색상선택</field>
         <field name="switch">on</field>
       </block>
+
+      <block type="move_blk">
+        <field name="move_blk_walk">방향선택</field>
+      </block>
+
+      <block type="move_mouse">
+          <field name="moveLocation">선택</field>
+      </block>
     </category>
+
+    <category name="반복">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="controls_whileUntil"></block>
+
+      <block type="controls_for">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+
+    <category name="연산">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo"></block>
+      <block type="math_constrain">
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+    </category>
+
+
+    <category name="목록">
+      <block type="lists_create_empty"></block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf"></block>
+      <block type="lists_getIndex"></block>
+      <block type="lists_setIndex"></block>
+    </category>
+
+    <category name="변수" custom="VARIABLE"></category>
+
+    <category name="기능/함수" custom="PROCEDURE"></category>
+
   </xml>
    </div>
 
-  
 
- 
-
-   <script type="text/javascript">
-    var Request = function()
-    {
-        this.getParameter = function( name )
-        {
-            var rtnval = '';
-            var nowAddress = unescape(location.href);
-            var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
-
-            for(var i = 0 ; i < parameters.length ; i++)
-            {
-                var varName = parameters[i].split('=')[0];
-                if(varName.toUpperCase() == name.toUpperCase())
-                {
-                    rtnval = parameters[i].split('=')[1];
-                    break;
-                }
-            }
-            return rtnval;
-        }
-    }
-    var request = new Request();
-
-    var uid = request.getParameter('uid') ;
-    var room = request.getParameter('room');
-
-    var socket = io.connect('http://localhost:8080');
-
-    socket.emit('init',{_id:room});
-
-  
-    socket.on('toclient',function(data){//toclient emit
-      if(data._id==room) //현재 클라이언트와 전달받은 데이터의 방이 일치할 때
-        {
-          workspace.clear();
-          var xml = Blockly.Xml.textToDom(data.xml_text);
-          Blockly.Xml.domToWorkspace(xml, workspace);
-        } // 데이터 출력
-    });
+<script>
   //put the toolbox in the workspace
   var workspace =Blockly.inject('blocklyDiv',
     {media: '../../media/',
     toolbox: document.getElementById('toolbox')});
-
-  function onBlockMove() {
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var xml_text = Blockly.Xml.domToText(xml);
-    socket.emit('fromclient',{_id:room,xml_text:xml_text});//fromclient emit     */
-  } 
 
   // take the text generated by the blocks and run it as code
   function runCode() {
     window.LoopTrap = 1000;
     Blockly.JavaScript.INFINITE_LOOP_TRAP =
       'if(--window.LoopTrap == 0) throw "Infinite loop.";\n';
-      /*var xmlDom = Blockly.Xml.workspaceToDom(workspace);
-      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-      console.log(xmlText);
-      */
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       try{
         eval(code);
@@ -180,7 +233,53 @@
   </script>
 </div>  
 
-        
+
+        <script type="text/javascript">
+            //웹 Refresh button
+            function webReload(){
+              location.reload();
+            }
+
+            var Request = function()
+            {
+                this.getParameter = function( name )
+                {
+                    var rtnval = '';
+                    var nowAddress = unescape(location.href);
+                    var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+
+                    for(var i = 0 ; i < parameters.length ; i++)
+                    {
+                        var varName = parameters[i].split('=')[0];
+                        if(varName.toUpperCase() == name.toUpperCase())
+                        {
+                            rtnval = parameters[i].split('=')[1];
+                            break;
+                        }
+                    }
+                    return rtnval;
+                }
+            }
+            var request = new Request();
+
+            var uid = request.getParameter('uid') ;
+            var room = request.getParameter('room');
+    
+            var socket = io.connect('http://localhost:8080');
+    
+            socket.emit('init',{room:room});
+
+            $("#msgbox").keyup(function(event) { //메세지 박스 입력될때
+                if (event.which == 13) {
+                    socket.emit('fromclient',{uid:uid, msg:$('#msgbox').val(),room:room});//fromclient emit
+                    $('#msgbox').val('');
+                }
+            });
+            socket.on('toclient',function(data){//toclient emit
+                if(data.room==room) //현재 클라이언트와 전달받은 데이터의 방이 일치할 때
+                    $('#msgs').append(data.uid + " : " +data.msg+'<BR>'); // 데이터 출력
+            });
+        </script>
         <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
