@@ -6,7 +6,7 @@ var myGamePiece;
 var mycanvas;
 
 function startGame() {
-  myGamePiece = new component(30, 30, "../stylesheets/003-happy.png", 10, 10, "image");
+  myGamePiece = new component(100, 100, "../stylesheets/cocoding.png", 10, 10, "image");
   myGameArea.start();
   
 }
@@ -14,8 +14,8 @@ function startGame() {
 var myGameArea = {
   canvas : document.createElement("canvas"),
   start : function() {
-      this.canvas.width = 270;
-      this.canvas.height = 270;
+      this.canvas.width = 350;
+      this.canvas.height = 350;
       this.canvas.id= "myCanvas";
       this.context = this.canvas.getContext("2d");
       //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -64,7 +64,7 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
   myGameArea.clear();
-  //myGamePiece.newPos();
+  myGamePiece.newPos();
   //myGamePiece.update();
 
   if (myGameArea.x && myGameArea.y) {
@@ -74,7 +74,7 @@ function updateGameArea() {
   myGamePiece.update();
 }
 function clearmove() {
-  myGamePiece.image.src = "../stylesheets/003-happy.png";
+  myGamePiece.image.src = "../stylesheets/cocoding.png";
   myGamePiece.speedX = 0; 
   myGamePiece.speedY = 0; 
 }
@@ -144,7 +144,7 @@ Blockly.Blocks['move_blk'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("이동하기")
-        .appendField(new Blockly.FieldDropdown([["앞으로","forward"], ["뒤로","backward"], ["위로","up"], ["아래로","down"]]), "move_dropdown");
+        .appendField(new Blockly.FieldDropdown([["앞으로","forward"], ["뒤로","backward"], ["위로","up"], ["아래로","down"]]), "move_blk_walk");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -155,19 +155,19 @@ Blockly.Blocks['move_blk'] = {
 };
 
 Blockly.JavaScript['move_blk'] = function(block) {
-  var dropdown_move_dropdown = block.getFieldValue('move_dropdown');
+  var dropdown_move_dropdown = block.getFieldValue('move_blk_walk');
   // Move Element
   if(dropdown_move_dropdown == "forward"){ // 앞으로 일때 
-  var code = "document.getElementById('circle').style.left='760px';"
-  }
+    myGamePiece.x += 20;
+    }
   if(dropdown_move_dropdown == "backward"){ // 뒤로 일때 
-  var code = "document.getElementById('circle').style.left='200px';"
+    myGamePiece.x -= 20;
   }
   if(dropdown_move_dropdown == "up"){ // 위로
-  var code = "document.getElementById('circle').style.top='200px';"
+    myGamePiece.y -= 20;
   }
   if(dropdown_move_dropdown == "down"){ // 아래로 
-  var code = "document.getElementById('circle').style.top='500px';"
+    myGamePiece.y += 20;
   }
   return code;
 };

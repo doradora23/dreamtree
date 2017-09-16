@@ -90,24 +90,26 @@
    
    <!-- button to run code -->
   <p>
-    <button onclick="runCode()">Run JavaScript</button>
+    <button onclick="runCode()" class="btn btn-primary">Run JavaScript</button>
+    <button onclick="webReload()" class="btn btn-warning"> 새로고침 </button>
   </p>
+  
   <!-- TOOL BOX -->
-  <div id="blocklyDiv" style="height: 460px; width: 600px;"></div>
+  <div id="blocklyDiv" style="height: 500px; width: 100%;"></div>
 
   <xml id="toolbox" style="display: none;">
     <category name="이동">
       <block type="lightswitch">
-        <field name="lightcolor">red</field>
+        <field name="lightcolor">색상선택</field>
         <field name="switch">on</field>
       </block>
 
       <block type="move_blk">
-        <field name="이동하기">앞으로</field>
+        <field name="move_blk_walk">방향선택</field>
       </block>
 
       <block type="move_mouse">
-          <field name="moveLocation">마우스커서로</field>
+          <field name="moveLocation">선택</field>
       </block>
     </category>
 
@@ -233,6 +235,11 @@
 
 
         <script type="text/javascript">
+            //웹 Refresh button
+            function webReload(){
+              location.reload();
+            }
+
             var Request = function()
             {
                 this.getParameter = function( name )
