@@ -24,10 +24,11 @@ Blockly.JavaScript['lightswitch'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   if(dropdown_switch == "on"){
     var code = "document.getElementById('circle').style.backgroundColor='red';"
-
   }
   if(dropdown_switch == "off"){
     var code = "document.getElementById('circle').style.backgroundColor='white';"
   }
   return code;
 };
+
+
