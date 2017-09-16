@@ -95,7 +95,7 @@
   </p>
   
   <!-- TOOL BOX -->
-  <div id="blocklyDiv" style="height: 500px; width: 100%;"></div>
+  <div id="blocklyDiv" onmouseup="onBlockMove()" style="height: 500px; width: 100%;"></div>
 
   <xml id="toolbox" style="display: none;">
     <category name="이동">
@@ -267,18 +267,22 @@
     
             var socket = io.connect('http://localhost:8080');
     
-            socket.emit('init',{room:room});
-
-            $("#msgbox").keyup(function(event) { //메세지 박스 입력될때
-                if (event.which == 13) {
-                    socket.emit('fromclient',{uid:uid, msg:$('#msgbox').val(),room:room});//fromclient emit
-                    $('#msgbox').val('');
-                }
-            });
+            socket.emit('init',{_id:room});
             socket.on('toclient',function(data){//toclient emit
-                if(data.room==room) //현재 클라이언트와 전달받은 데이터의 방이 일치할 때
-                    $('#msgs').append(data.uid + " : " +data.msg+'<BR>'); // 데이터 출력
+              if(data._id==room) //현재 클라이언트와 전달받은 데이터의 방이 일치할 때
+                {
+                  workspace.clear();
+                  var xml = Blockly.Xml.textToDom(data.xml_text);
+                  Blockly.Xml.domToWorkspace(xml, workspace);
+                } // 데이터 출력
             });
+            
+            function onBlockMove() {
+              var xml = Blockly.Xml.workspaceToDom(workspace);
+              var xml_text = Blockly.Xml.domToText(xml);
+              socket.emit('fromclient',{_id:room,xml_text:xml_text});//fromclient emit     */
+            } 
+            
         </script>
         <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>

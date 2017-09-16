@@ -4,7 +4,7 @@ var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 
-var BlockSchema= mongoose.Schema({uid:String, msg:String, room:String});
+var BlockSchema= mongoose.Schema({_id:String, xml_text:String});
 var TestModel = mongoose.model("TestModel", BlockSchema);
 
 var app = express();
@@ -24,23 +24,26 @@ io.sockets.on('connection',function(socket){
         return console.error(err);
       else{
         for(var val of models) {
-          if(val.room == data.room) // db의 모든 데이터와 클라이언트의 방을 비교함
+          if(val._id == data._id) {// db의 모든 데이터와 클라이언트의 방을 비교함
             socket.emit('toclient',val); // 해당 클라이언트에게 전달
       }
-        
+    }
       }
     });
   })
   
-  
   socket.on('fromclient',function(data){
+  console.log(data);
   socket.broadcast.emit('toclient',data); // 자신을 제외하고 다른 클라이언트에게 보냄
-  socket.emit('toclient',data); // 해당 클라이언트에게만 보냄
-  var testIns = new TestModel({ uid: data.uid, msg: data.msg, room : data.room });
+  var testIns = new TestModel({_id:data._id, xml_text: data.xml_text});
+  testIns.remove(function(err){
+    if (err)
+    return console.log(err);}
+  ) 
   testIns.save(function(err){
     if (err)
-      return console.log(err);
-     }) 
+    return console.log(err);}
+  ) 
   })
 });
 
@@ -48,4 +51,3 @@ mongoose.connect('mongodb://dreamtree:dreamtreepw@ds135594.mlab.com:35594/cocodi
 mongoose.connection.on('error', console.log);
 
 module.exports = app;
-
