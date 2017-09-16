@@ -1,17 +1,71 @@
-<html>
+<!DOCTYPE html>
+<html lang="ko">
     <head>
-     
         <title></title>
+        <meta charset = "utf-8"/>
         <script src="/socket.io/socket.io.js"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-     
+     <!--반응형 웹, 부트스트랩-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     </head>
     <body>
-        <b>Send message</b><p>
+       <!-- 상단 메뉴 바 -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">Bootstrap</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="./index.html">Home</a>
+              </li>
+              <li class="active">
+                <a href="./getting-started.html">Get started</a>
+              </li>
+              <li class="">
+                <a href="./scaffolding.html">Scaffolding</a>
+              </li>
+              <li class="">
+                <a href="./base-css.html">Base CSS</a>
+              </li>
+              <li class="">
+                <a href="./components.html">Components</a>
+              </li>
+              <li class="">
+                <a href="./javascript.html">JavaScript</a>
+              </li>
+              <li class="">
+                <a href="./customize.html">Customize</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+ <!-- 구조 -->
+ <div class="row" style="padding-top: 60px;">
+  <div class="span5" style="border-right: solid 1px black; padding-left: 20px;"> <b>Send message</b><p>
         Message  <input type="text" id="msgbox"/>
         <br>
-        <span id="msgs"></span>
-     
+        <span id="msgs"></span> </div>
+
+  <div class="span7"> 여기는 블락 버튼이 들어갑니다. </div>
+</div>  
+
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
         <script type="text/javascript">
             var Request = function()
             {

@@ -36,7 +36,7 @@ io.sockets.on('connection',function(socket){
    })
 });
 
-mongoose.connect('mongodb://<user>:<pw>@ds135594.mlab.com:35594/cocoding');
+mongoose.connect('mongodb://dreamtree:dreamtreepw@ds135594.mlab.com:35594/cocoding');
 mongoose.connection.on('error', console.log);
 
 module.exports = app;
