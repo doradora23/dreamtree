@@ -279,6 +279,16 @@
               var xml_text = Blockly.Xml.domToText(xml);
               socket.emit('fromclient',{_id:room,xml_text:xml_text});//fromclient emit     */
             } 
+            $("#msgbox").keyup(function(event) {
+              if (event.which == 13) {
+                socket.emit('fromclientChat',{uid:uid,msg:$('#msgbox').val(),room:room});//fromclient emit
+                $('#msgbox').val('');
+              }
+            });
+            socket.on('toclientChat',function(data){
+              if(data.room==room)
+              $('#msgs').append(data.uid + " : " +data.msg+'<BR>');
+            });
             
         </script>
         <script src="http://code.jquery.com/jquery.js"></script>
