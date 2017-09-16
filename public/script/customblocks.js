@@ -158,16 +158,16 @@ Blockly.JavaScript['move_blk'] = function(block) {
   var dropdown_move_dropdown = block.getFieldValue('move_blk_walk');
   // Move Element
   if(dropdown_move_dropdown == "forward"){ // 앞으로 일때 
-    myGamePiece.x += 20;
+    var code = "myGamePiece.x += 20;"
     }
   if(dropdown_move_dropdown == "backward"){ // 뒤로 일때 
-    myGamePiece.x -= 20;
+    var code = "myGamePiece.x -= 20;"
   }
   if(dropdown_move_dropdown == "up"){ // 위로
-    myGamePiece.y -= 20;
+    var code = "myGamePiece.y -= 20;"
   }
   if(dropdown_move_dropdown == "down"){ // 아래로 
-    myGamePiece.y += 20;
+    var code = "myGamePiece.y += 20;"
   }
   return code;
 };
