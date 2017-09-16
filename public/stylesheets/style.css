@@ -1,9 +1,36 @@
 body {
-  padding: 50px;
+  /*padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+*/
+  background-color: #fff;
+  font-family: sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
 
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+}
+
+#canvasdiv{
+  border: 1px solid black;
+  margin:10px;
+}
+
+#massageDiv{
+  clear: both;
+  margin:10px;
+}
+/*
+#circle{
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-color:white;
+  border: solid 1px black;
+  position: absolute;
+  
+}*/
