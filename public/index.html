@@ -90,16 +90,21 @@
             var request = new Request();
 
             var uid = request.getParameter('uid') ;
+            var room = request.getParameter('room');
+    
             var socket = io.connect('http://localhost:8080');
-            $("#msgbox").keyup(function(event) {
+    
+            socket.emit('init',{room:room});
+
+            $("#msgbox").keyup(function(event) { //메세지 박스 입력될때
                 if (event.which == 13) {
-                    socket.emit('fromclient',{uid:uid,msg:$('#msgbox').val()});
+                    socket.emit('fromclient',{uid:uid, msg:$('#msgbox').val(),room:room});//fromclient emit
                     $('#msgbox').val('');
                 }
             });
-            socket.on('toclient',function(data){
-                console.log(data.msg);
-                $('#msgs').append(data.uid + " : " +data.msg+'<BR>');
+            socket.on('toclient',function(data){//toclient emit
+                if(data.room==room) //현재 클라이언트와 전달받은 데이터의 방이 일치할 때
+                    $('#msgs').append(data.uid + " : " +data.msg+'<BR>'); // 데이터 출력
             });
         </script>
     </body>
