@@ -1,9 +1,11 @@
 body {
   /*padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-*/
+
   background-color: #fff;
-  font-family: sans-serif;
+  font-family: sans-serif;*/
+  background-color: #F3FDFF;
+  
 }
 
 a {
@@ -18,12 +20,48 @@ h1 {
 #canvasdiv{
   border: 1px solid black;
   margin:10px;
+  background-color: #FFFFFF;
 }
 
 #massageDiv{
   clear: both;
   margin:10px;
 }
+
+.container{
+  width: 100%;
+  margin-left: 37.135px;
+  margin-right: 37.135px;
+}
+
+.nav-collapse{
+  float: right;
+  height: 100%;
+  
+}
+
+#logo_img{
+  width: 202.75px;
+  height: 37.5px;
+  margin: auto;
+}
+.navbar{
+  background-color: FFFFFF;
+  border-bottom: 1px solid #97E4FF;
+  height: 53px;
+}
+.navbar-inner{
+  height: auto;
+}
+.row{
+  background-color: #F3FDFF;
+}
+/*
+#cocoding_menu{
+  width: 18px;
+  height: 15.333px;
+  
+}*/
 /*
 #circle{
   height: 300px;

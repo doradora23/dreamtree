@@ -1,68 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <title></title>
-        <meta http-ｅquiv="Content-Type" content="text/html;charset=UTF-8">
+  <head>
+    <title></title>
+    <meta http-ｅquiv="Content-Type" content="text/html;charset=UTF-8">
 
-        <meta charset = "utf-8"/>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-     <!--반응형 웹, 부트스트랩-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <!--blockly-->
-    <script src="script/blockly_compressed.js"></script>
-   <script src="script/blocks_compressed.js"></script>
-   <script src="script/javascript_compressed.js"></script>
-   <script src="script/en.js"></script>
+    <meta charset = "utf-8"/>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <!--반응형 웹, 부트스트랩-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<!--blockly-->
+<script src="script/blockly_compressed.js"></script>
+<script src="script/blocks_compressed.js"></script>
+<script src="script/javascript_compressed.js"></script>
+<script src="script/en.js"></script>
 
-   <script src="script/customblocks.js"></script>
+<script src="script/customblocks.js"></script>
 
-   <!--custom css -->
-   <link href="stylesheets/style.css" rel="stylesheet">
-  
+<!--custom css -->
+<link href="stylesheets/style.css" rel="stylesheet">
 
-    </head>
-    <body onload="startGame()">
-       <!-- 상단 메뉴 바 -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="./index.html">Bootstrap</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="">
-                <a href="./index.html">Home</a>
-              </li>
-              <li class="active">
-                <a href="./getting-started.html">Get started</a>
-              </li>
-              <li class="">
-                <a href="./scaffolding.html">Scaffolding</a>
-              </li>
-              <li class="">
-                <a href="./base-css.html">Base CSS</a>
-              </li>
-              <li class="">
-                <a href="./components.html">Components</a>
-              </li>
-              <li class="">
-                <a href="./javascript.html">JavaScript</a>
-              </li>
-              <li class="">
-                <a href="./customize.html">Customize</a>
-              </li>
-            </ul>
-          </div>
+</head>
+<body onload="startGame()">
+
+   <!-- 상단 메뉴 바 -->
+   <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+   
+        <!-- Be sure to leave the brand out there if you want it shown -->
+        <a class="brand" href="#"><img src="stylesheets/cocoding_logo.png" id="logo_img"/></a>
+   
+        <!-- Everything you want hidden at 940px or less, place within here -->
+        <div class="nav-collapse collapse">
+          <!-- .nav, .navbar-search, .navbar-form, etc -->
+          <ul class="nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="stylesheets/cocoding_menu.png" id="cocoding_menu"/>
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
+   
       </div>
     </div>
+  </div>
+
+
  <!-- 구조 -->
  <div class="row" style="padding-top: 60px;">
   
