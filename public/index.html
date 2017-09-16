@@ -15,7 +15,7 @@
    <script src="../blockly_test/javascript_compressed.js"></script>
    <script src="../blockly_test/msg/js/en.js"></script>
 
-   <script src="/script/customblocks.js"></script>
+   <script src="script/customblocks.js"></script>
   <style>
     body {
       background-color: #fff;
@@ -81,7 +81,7 @@
   <div class="span5" style="border-right: solid 1px black; padding-left: 20px;"> 
    <!-- added to the page -->
   <div id="circle"></div>
-
+  
   <b>Send message</b><p>
         Message  <input type="text" id="msgbox"/>
         <br>
@@ -94,7 +94,7 @@
     <button onclick="runCode()">Run JavaScript</button>
   </p>
   <!-- TOOL BOX -->
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  <div id="blocklyDiv" style="height: 460px; width: 600px; overflow:auto;"></div>
 
   <xml id="toolbox" style="display: none;">
     <category name="Logic">
