@@ -156,18 +156,49 @@ Blockly.Blocks['move_blk'] = {
 
 Blockly.JavaScript['move_blk'] = function(block) {
   var dropdown_move_dropdown = block.getFieldValue('move_blk_walk');
+  var delayMillis = 1000; //5 second
+  var myinterval;
+
   // Move Element
   if(dropdown_move_dropdown == "forward"){ // 앞으로 일때 
-    var code = "myGamePiece.x += 20;"
+    var code = "myGamePiece.x += 0.1;"
+    myinterval = setInterval(code, 1);
+
+    setTimeout(function() {
+      //your code to be executed after 5 second
+      clearInterval(myinterval);      
+    }, delayMillis);
+
     }
   if(dropdown_move_dropdown == "backward"){ // 뒤로 일때 
-    var code = "myGamePiece.x -= 20;"
+    var code = "myGamePiece.x -= 0.1;"
+    myinterval = setInterval(code, 1);
+    
+        setTimeout(function() {
+          //your code to be executed after 5 second
+          clearInterval(myinterval);      
+        }, delayMillis);
+    
   }
   if(dropdown_move_dropdown == "up"){ // 위로
-    var code = "myGamePiece.y -= 20;"
+    var code = "myGamePiece.y -= 0.1;"
+    myinterval = setInterval(code, 1);
+    
+        setTimeout(function() {
+          //your code to be executed after 5 second
+          clearInterval(myinterval);      
+        }, delayMillis);
+    
   }
   if(dropdown_move_dropdown == "down"){ // 아래로 
-    var code = "myGamePiece.y += 20;"
+    var code = "myGamePiece.y += 0.1;"
+    myinterval = setInterval(code, 1);
+    
+        setTimeout(function() {
+          //your code to be executed after 5 second
+          clearInterval(myinterval);      
+        }, delayMillis);
+    
   }
   return code;
 };
