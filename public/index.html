@@ -106,7 +106,7 @@
   <div id="blocklyDiv" onmouseup="onBlockMove()" style="height: 650px; width: 100%; border-radius: 10px;"></div>
 
   <xml id="toolbox" style="display: none;">
-    <category name="이동">
+    <category name="이동" colour="%{BKY_LOGIC_HUE}">
       <block type="lightswitch">
         <field name="lightcolor">색상선택</field>
         <field name="switch">on</field>
@@ -121,7 +121,7 @@
       </block>
     </category>
 
-    <category name="반복">
+    <category name="반복" colour="%{BKY_LOOP_HUE}">
       <block type="controls_repeat_ext">
         <value name="TIMES">
           <block type="math_number">
@@ -155,7 +155,7 @@
       <block type="controls_flow_statements"></block>
     </category>
 
-    <category name="연산">
+    <category name="연산" colour="%{BKY_TEXTS_HUE}">
       <block type="math_number"></block>
       <block type="math_arithmetic"></block>
       <block type="math_single"></block>
@@ -192,8 +192,17 @@
       <block type="math_random_float"></block>
     </category>
 
+    <category name="조건" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
 
-    <category name="목록">
+    <category name="목록" colour="%{BKY_COLOUR_HUE}">
       <block type="lists_create_empty"></block>
       <block type="lists_create_with"></block>
       <block type="lists_repeat">
@@ -210,9 +219,9 @@
       <block type="lists_setIndex"></block>
     </category>
 
-    <category name="변수" custom="VARIABLE"></category>
+    <category name="변수" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}"></category>
 
-    <category name="기능/함수" custom="PROCEDURE"></category>
+    <category name="기능/함수" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}"></category>
 
   </xml>
    </div>
