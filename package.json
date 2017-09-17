@@ -1,9 +1,13 @@
 {
-  "name": "dreamtree",
+  "name": "dreamtree-cocoding",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js",
+    "deploy": "gcloud app deploy"
+  },
+  "engines": {
+    "node": "4.4.4"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -17,5 +21,18 @@
     "serve-favicon": "~2.4.2",
     "socket.io": "^2.0.3",
     "url": "^0.11.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doradora23/dreamtree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doradora23/dreamtree/issues"
+  },
+  "homepage": "https://github.com/doradora23/dreamtree#readme",
+  "description": ""
 }
