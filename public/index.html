@@ -21,7 +21,12 @@
 
 <!--custom css -->
 <link href="stylesheets/style.css" rel="stylesheet">
-
+<style>
+  #canvasdiv{
+    border-color: #97E4FF;
+    border-radius: 10px;
+  }
+  </style>
 </head>
 <body onload="startGame()">
 
@@ -63,7 +68,7 @@
  <!-- 구조 -->
  <div class="row" style="padding-top: 60px;">
   
-  <div class="span5" style="border-right: solid 1px black; padding-left: 20px;"> 
+  <div class="span5" style="padding-left: 20px;"> 
 
    <!-- added to the page -->
     <div id="canvasdiv">
@@ -77,12 +82,18 @@
   
     <div id="massageDiv">
     <h4>채팅창</h4><p>
-        Message  <input type="text" id="msgbox"/>
+    
+
+    <div class="img-rounded" style="height:250px; background-image: url('/stylesheets/chatBox1.png')">
+    <span id="msgs"></span>
+    </div>
+            <h5>Message <input type="text" id="msgbox"/> </h5>
         <br>
-        <span id="msgs"></span>
+        
 
     </div>      
   </div>
+
   <div class="span7">
    
    <!-- button to run code -->
@@ -92,7 +103,7 @@
   </p>
   
   <!-- TOOL BOX -->
-  <div id="blocklyDiv" onmouseup="onBlockMove()" style="height: 500px; width: 100%;"></div>
+  <div id="blocklyDiv" onmouseup="onBlockMove()" style="height: 650px; width: 100%; border-radius: 10px;"></div>
 
   <xml id="toolbox" style="display: none;">
     <category name="이동">
